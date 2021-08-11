@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>0.1.0</Version>
+    <Authors>Alfonso Segura</Authors>
+    <Company>TryCatch Software Factory</Company>
+    <Description>CQRS Lightweight Framework for .Net Core projects</Description>
+    <Copyright>Copyright (c) 2021TryCatch Software Factory</Copyright>
+    <PackageProjectUrl>https://github.com/TryCatch-SoftwareFactory/TryCatch.Cqrs</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TryCatch-SoftwareFactory/TryCatch.Cqrs.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>cqrs .netcore cqrs-pattern</PackageTags>
+    <Product>TryCatch.Cqrs</Product>
+    <PackageId>TryCatch.Cqrs.Lightweight</PackageId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.18" />
+    <PackageReference Include="TryCatch" Version="0.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+
+</Project>
