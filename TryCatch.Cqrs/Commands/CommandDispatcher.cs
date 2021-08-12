@@ -5,7 +5,6 @@
 
 namespace TryCatch.Cqrs.Commands
 {
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using TryCatch.Patterns.Results;
@@ -16,8 +15,6 @@ namespace TryCatch.Cqrs.Commands
     /// </summary>
     public abstract class CommandDispatcher : ICommandDispatcher
     {
-        private readonly ICommandHandlersFactory factory;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandDispatcher"/> class.
         /// </summary>
@@ -26,8 +23,13 @@ namespace TryCatch.Cqrs.Commands
         {
             ArgumentsValidator.ThrowIfIsNull(factory, nameof(factory));
 
-            this.factory = factory;
+            this.Factory = factory;
         }
+
+        /// <summary>
+        /// Gets the <see cref="ICommandHandlersFactory"/> reference to the current factory.
+        /// </summary>
+        public ICommandHandlersFactory Factory { get; }
 
         /// <inheritdoc/>
         public async Task<Result<TPayload>> Run<TCommand, TPayload>(TCommand command, CancellationToken cancellationToken = default)
@@ -37,7 +39,7 @@ namespace TryCatch.Cqrs.Commands
 
             ArgumentsValidator.ThrowIfIsNull(command, $"Command {typeof(TCommand).Name} is null.");
 
-            var handler = this.factory.GetHandler<TCommand, TPayload>();
+            var handler = this.Factory.GetHandler<TCommand, TPayload>();
 
             return await handler.Execute(command, cancellationToken).ConfigureAwait(false);
         }

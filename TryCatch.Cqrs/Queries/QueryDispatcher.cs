@@ -14,8 +14,6 @@ namespace TryCatch.Cqrs.Queries
     /// </summary>
     public abstract class QueryDispatcher : IQueryDispatcher
     {
-        private readonly IQueryHandlersFactory factory;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryDispatcher"/> class.
         /// </summary>
@@ -24,8 +22,13 @@ namespace TryCatch.Cqrs.Queries
         {
             ArgumentsValidator.ThrowIfIsNull(factory, nameof(factory));
 
-            this.factory = factory;
+            this.Factory = factory;
         }
+
+        /// <summary>
+        /// Gets the <see cref="IQueryHandlersFactory"/> reference to the current factory.
+        /// </summary>
+        public IQueryHandlersFactory Factory { get; }
 
         /// <inheritdoc/>
         public async Task<TQueryResult> Run<TQueryObject, TQueryResult>(TQueryObject queryObject, CancellationToken cancellationToken = default)
@@ -36,7 +39,7 @@ namespace TryCatch.Cqrs.Queries
 
             ArgumentsValidator.ThrowIfIsNull(queryObject, $"QueryObject {typeof(TQueryObject).Name} is null.");
 
-            var handler = this.factory.GetHandler<TQueryObject, TQueryResult>();
+            var handler = this.Factory.GetHandler<TQueryObject, TQueryResult>();
 
             return await handler.Execute(queryObject, cancellationToken).ConfigureAwait(false);
         }

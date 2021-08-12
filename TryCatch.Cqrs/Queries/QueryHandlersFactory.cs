@@ -8,7 +8,6 @@ namespace TryCatch.Cqrs.Queries
     using System;
     using TryCatch.Cqrs.Exceptions;
     using TryCatch.Patterns.Factories;
-    using TryCatch.Validators;
 
     /// <summary>
     /// Implementation of query handlers factory.
