@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>Alfonso Segura</Authors>
     <Company>TryCatch Software Factory</Company>
     <Description>CQRS Lightweight Framework for .Net Core projects</Description>
